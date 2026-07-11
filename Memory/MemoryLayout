@@ -1,0 +1,219 @@
+**************What is Memory Layout?
+When you run a C program, the Operating System divides the program's memory into different parts.
+Think of it like a building with different rooms.
++--------------------+
+|      Stack         |
++--------------------+
+|                    |
+|    Free Space      |
+|                    |
++--------------------+
+|      Heap          |
++--------------------+
+|      BSS           |
++--------------------+
+|     Data           |
++--------------------+
+|  Text (Code)       |
++--------------------+
+
+Every section has a different purpose.
+
+There are 5 important sections:
+
+Text Segment
+Data Segment
+BSS Segment
+Heap
+Stack
+
+Let's understand them one by one.
+
+1. Text Segment (Code Segment)
+What is it?
+
+This stores the compiled machine instructions of your program.
+
+Example
+
+#include<stdio.h>
+
+int main()
+{
+    printf("Hello");
+}
+
+The instructions for main() and printf() are stored here.
+
+2. Data Segment
+Stores initialized global and static variables.
+Example
+int x = 10;
+static int y = 20;
+
+Memory
+Data Segment
+x = 10
+y = 20
+Notice:
+Both variables already have values.
+
+Characteristics
+Stores initialized global variables
+Stores initialized static variables
+Exists throughout the program
+
+Example
+#include<stdio.h>
+int marks = 100;
+int main()
+{
+    printf("%d", marks);
+}
+Data Segment
+
+marks = 100
+
+
+
+3. BSS Segment
+What is BSS?
+BSS stands for
+Block Started by Symbol
+
+Stores
+Uninitialized global variables
+Uninitialized static variables
+
+Example
+
+int x;
+
+static int y;
+
+You didn't assign values.
+
+C automatically initializes them to 0.
+
+BSS
+
+x = 0
+
+y = 0
+Example
+#include<stdio.h>
+
+int x;
+
+int main()
+{
+    printf("%d", x);
+}
+
+Output
+
+0
+
+Because it is stored in BSS.
+
+Text Segment
+
+main()
+
+printf()
+
+return
+Characteristics
+Stores program code
+Read-only
+Created before execution
+Exists until the program ends
+Interview Question
+
+Q: What is stored in the Text Segment?
+Answer: The executable instructions (compiled machine code) of the program.
+
+
+4. Heap
+Heap is used for Dynamic Memory Allocation.
+
+Functions
+malloc()
+calloc()
+realloc()
+free()
+
+Example
+
+int *ptr;
+
+ptr = (int *)malloc(5 * sizeof(int));
+
+Memory
+
+Heap
+
++----+----+----+----+----+
+
+ptr
+ ↓
+
+The heap stores memory requested at runtime.
+
+Characteristics
+Used for dynamic memory
+Managed by the programmer
+Large memory
+Slower than stack
+Must use free()
+
+Example
+
+free(ptr);
+
+Memory is released.
+
+5. Stack
+Stack stores
+
+Local variables
+Function parameters
+Return addresses
+Function calls
+
+Example
+
+void fun()
+{
+    int a = 10;
+}
+
+Memory
+
+Stack
+a = 10
+When fun() finishes, a is automatically removed
+
+
+Text  → Program Code
+
+Data  → Initialized Global/Static Variables
+
+BSS   → Uninitialized Global/Static Variables
+
+Heap  → malloc(), calloc(), realloc()
+
+Stack → Local Variables & Function Calls
+
+10. Which memory grows upward?
+Answer: Heap
+
+11. Which memory grows downward?
+Answer: Stack
+
+12. Why do Stack and Heap grow in opposite directions?
+Answer:
+To efficiently use the available memory space. They grow toward each other so both can expand as needed.
+
+Why is the Stack faster than the Heap?
+Answer: Stack memory allocation/deallocation is managed automatically with simple push/pop operations, while heap allocation involves searching for free memory and bookkeeping.
