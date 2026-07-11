@@ -1,0 +1,476 @@
+Imagine You Write This Program
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World");
+    return 0;
+}
+
+Can the CPU understand this?
+
+No.
+
+The CPU understands only 0s and 1s (Machine Language).
+
+So your C code must be converted into machine language before it can run.
+
+********Journey of a C Program
+C Program
+     │
+     ▼
+Preprocessor
+     │
+     ▼
+Compiler
+     │
+     ▼
+Assembler
+     │
+     ▼
+Linker
+     │
+     ▼
+Executable File
+     │
+     ▼
+Loader
+     │
+     ▼
+CPU Executes Program
+
+***********Now let's understand each step.
+
+-Step 1: Source Code (.c)
+
+This is the code you write.
+
+Example
+
+printf("Hello");
+
+This is called
+
+Source Code
+
+File extension
+
+.c
+
+Humans understand this.
+
+CPU does not.
+
+---Step 2: Preprocessor
+
+The preprocessor runs before the compiler.
+
+Example
+
+#include<stdio.h>
+
+The preprocessor replaces it with the actual contents of the header file.
+
+Think of it like:
+
+Before
+
+#include<stdio.h>
+
+↓
+
+After
+
+All printf(), scanf() declarations are inserted.
+
+It also handles:
+
+#define PI 3.14
+
+It replaces
+
+PI
+
+with
+
+3.14
+Interview Question
+What does the preprocessor do?
+
+Answer:
+
+It processes directives like #include and #define before compilation.
+
+----Step 3: Compiler
+
+Now comes the compiler.
+
+The compiler checks your program for errors.
+
+Example
+
+printf("Hello")
+
+Forgot
+
+;
+
+Compiler says
+
+Error
+
+If everything is correct
+
+Compiler converts
+
+C Language
+
+into
+
+Assembly Language
+What is Assembly Language?
+
+Assembly language is closer to machine language but still readable by humans.
+
+Example
+
+Instead of
+
+a = b + c;
+
+Assembly might look like
+
+MOV R1, b
+ADD R1, c
+MOV a, R1
+
+Notice
+
+Still readable.
+
+But difficult.
+
+Step 4: Assembler
+
+CPU still cannot understand assembly.
+
+Assembler converts
+
+Assembly Language
+
+↓
+
+into
+
+Machine Language
+What is Machine Language?
+
+Machine language contains only
+
+0
+
+1
+
+Example
+
+10110010
+
+11001011
+
+11101001
+
+CPU understands only this.
+
+Why can't CPU understand C?
+
+Because CPU is an electronic circuit.
+
+It understands only
+
+ON
+
+OFF
+
+Which are represented by
+
+1
+
+0
+Step 5: Linker
+
+Suppose you write
+
+printf("Hello");
+
+Did you write the code for printf()?
+
+No.
+
+It is already present inside the C Standard Library.
+
+The linker finds that code and joins it with your program.
+
+Without the linker,
+
+printf() would not work.
+
+Interview Question
+
+Why do we need a linker?
+
+Answer:
+
+It combines your object code with required library code (like printf) to create an executable program.
+
+Step 6: Executable File
+
+After linking
+
+You get
+
+program.exe
+
+(or no extension on Linux).
+
+Now the program is ready to run.
+
+Step 7: Loader
+
+When you double-click
+
+program.exe
+
+The Loader
+
+Loads the program into RAM.
+Creates the memory layout (Text, Data, BSS, Heap, Stack).
+Gives control to the CPU.
+CPU Executes
+
+Now
+
+CPU starts executing instructions one by one.
+
+Simple Diagram
+You Write
+
+↓
+
+C Program
+
+↓
+
+Compiler
+
+↓
+
+Assembly
+
+↓
+
+Assembler
+
+↓
+
+Machine Code
+
+↓
+
+CPU
+What is a Compiler?
+
+A compiler converts the entire program into machine code before execution.
+
+Example
+
+1000 lines
+
+↓
+
+Compile
+
+↓
+
+Run
+Compiler Advantages
+Faster execution
+Better optimization
+Finds errors before running
+
+Examples
+
+C
+C++
+Go
+Rust
+What is an Interpreter?
+
+An interpreter executes one line at a time.
+
+Example
+
+Line 1
+
+↓
+
+Execute
+
+↓
+
+Line 2
+
+↓
+
+Execute
+
+Examples
+
+Python
+JavaScript
+Compiler vs Interpreter
+Compiler	Interpreter
+Converts whole program	Converts one line at a time
+Faster execution	Slower execution
+Creates executable file	No separate executable
+Errors shown after compilation	Stops at first error
+Why is C Fast?
+
+Because
+
+C
+
+↓
+
+Compiler
+
+↓
+
+Machine Code
+
+↓
+
+CPU
+
+No translation during execution.
+
+Why is Python Slower?
+
+Because
+
+Python Code
+
+↓
+
+Interpreter
+
+↓
+
+Machine Code
+
+↓
+
+CPU
+
+Translation happens while the program runs.
+
+What is Machine Language?
+
+Language made of
+
+0
+
+1
+
+Example
+
+110101
+
+111000
+
+001001
+
+Only CPU understands it.
+
+What is Assembly Language?
+
+Uses short instructions.
+
+Example
+
+MOV
+
+ADD
+
+SUB
+
+JMP
+
+Easy for humans compared to binary.
+
+Needs an assembler.
+
+High-Level Language
+
+Easy for humans.
+
+Examples
+
+C
+C++
+Java
+Python
+
+Example
+
+a = b + c;
+Low-Level Language
+
+Close to hardware.
+
+Examples
+
+Assembly
+Machine Language
+
+Example
+
+MOV AX,BX
+Why is C Called a Middle-Level Language?
+
+Because C combines features of both high-level and low-level languages.
+
+High-Level Features
+Functions
+Loops
+Arrays
+Structures
+
+Example:
+
+for(int i = 0; i < 10; i++)
+{
+    printf("%d", i);
+}
+Low-Level Features
+Pointers
+Direct memory access
+Bitwise operations
+Hardware programming
+
+Example:
+
+int *ptr = &a;
+
+Since C supports both, it is called a middle-level language.
+
+
+NOTE----Easy Definition
+The Linker combines your program with required library code (like printf(), scanf(), etc.) and creates the final executable file.
+Loader's Job
+
+The Loader:
+
+Reads the executable file.
+Loads it into RAM.
+Creates the memory layout (Text, Data, BSS, Heap, Stack).
+Gives control to the CPU.
