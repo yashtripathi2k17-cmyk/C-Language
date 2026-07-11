@@ -1,0 +1,331 @@
+1--------Dynamic Memory Allocation (DMA) in C – Complete Interview Guide
+
+Dynamic Memory Allocation is one of the most important topics in C interviews. Companies like TCS, Infosys, Wipro, Accenture, Capgemini, Cognizant, Deloitte, and even product-based companies often ask questions on this topic.
+
+1. What is Memory Allocation?
+When you create a variable in C, the computer reserves some memory for it.
+
+Example:
+int a = 10;
+
+Here:
+int needs 4 bytes
+The compiler allocates 4 bytes of memory for a
+
+This process is called memory allocation.
+
+2. Types of Memory Allocation
+There are two types:
+
+1. Static Memory Allocation
+Memory is allocated before the program starts (compile time).
+
+Example:
+int arr[100];
+The array size is fixed.
+
+Even if you use only 10 elements, memory for all 100 elements is reserved.
+
+Advantages
+Fast
+Simple
+
+Disadvantages
+Fixed size
+Can waste memory
+Cannot grow or shrink
+
+2. Dynamic Memory Allocation (DMA)
+Memory is allocated while the program is running (runtime).
+
+Example:
+
+int n;
+scanf("%d", &n);
+
+int *arr = (int *)malloc(n * sizeof(int));
+
+Now memory depends on the value entered by the user.
+
+
+NOTE---Where is Dynamic Memory Stored?
+It is stored in the Heap.
+
+*******Heap vs Stack
+Stack	Heap
+Stores local variables	Stores dynamically allocated memory
+Automatically managed	Managed by programmer
+Fast	Slightly slower
+Limited size	Larger size
+Automatically freed	Must call free()
+
+
+1------Dynamic Memory Allocation Functions
+
+There are 4 important functions:
+
+malloc()
+calloc()
+realloc()
+free()
+
+All are declared in:
+#include <stdlib.h>
+
+
+
+1. malloc()
+
+Full Form:
+Memory Allocation
+
+It allocates memory but does not initialize it.
+
+Syntax
+pointer = (datatype *)malloc(size_in_bytes);
+
+Example:
+int *ptr;
+
+ptr = (int *)malloc(5 * sizeof(int));
+What happens internally?
+
+Step 1:
+Need memory for 5 integers.
+                                       
+Step 2:
+Since one integer is 4 bytes:
+
+5 × 4 = 20 bytes
+
+Step 3:
+The operating system gives 20 bytes in the heap.
+
+Heap
++----+----+----+----+----+
+| ?? | ?? | ?? | ?? | ?? |
++----+----+----+----+----+
+
+ptr
+ ↓
+The values are garbage values because malloc() does not initialize memory.
+
+Interview Question
+Why use sizeof(int) instead of writing 4?
+Answer:
+Different systems may use different integer sizes. sizeof(int) makes the program portable.
+
+Syntax
+int *ptr = (int *)malloc(5 * sizeof(int));
+
+Meaning (Step by Step)
+int *ptr → Declares a pointer that can store the address of an integer.
+malloc() → Allocates memory dynamically from the Heap.
+5 * sizeof(int) → Allocates memory for 5 integers (usually 5 × 4 = 20 bytes).
+(int *) → Converts the void * returned by malloc() into an int *.
+ptr = ... → Stores the starting address of the allocated memory in ptr.
+
+Simple Flow
+malloc(5 * sizeof(int))
+        ↓
+Allocates memory in Heap
+        ↓
+Returns starting address
+        ↓
+(int *) converts it to int pointer
+
+int *ptr = (int *)malloc(5 * sizeof(int)); dynamically allocates memory for 5 integers in the heap. malloc() returns the starting
+address of the allocated memory as a void *, which is typecast to int * and stored in the pointer ptr.
+
+2. calloc()
+
+Full Form:
+Contiguous Allocation
+
+It allocates memory and initializes every byte to zero.
+
+Syntax
+pointer = (datatype *)calloc(number_of_elements, sizeof(datatype));
+
+Example:
+int *ptr = (int *)calloc(5, sizeof(int));
+
+Memory:
+
+Heap
++----+----+----+----+----+
+| 0  | 0  | 0  | 0  | 0  |
++----+----+----+----+----+
+
+Difference Between malloc() and calloc()
+malloc()	calloc()
+One argument	Two arguments
+Garbage values	Zero initialized
+Faster	Slightly slower
+        ↓
+Address stored in ptr
+
+
+3------realloc()
+
+Suppose you initially allocate memory for 5 integers:
+
+int *ptr = (int *)malloc(5 * sizeof(int));
+
+Later you realize you need 10 integers.
+
+Instead of allocating a new block and copying data manually, use:
+
+ptr = (int *)realloc(ptr, 10 * sizeof(int));
+Internally
+
+Before:
+
++----+----+----+----+----+
+
+After:
+
++----+----+----+----+----+----+----+----+----+----+
+
+The system tries to expand the existing block. If that's not possible, it allocates a new block, copies the old data, frees the old block, and returns a new pointer.
+
+4. free()
+
+Memory allocated with malloc(), calloc(), or realloc() is not freed automatically.
+
+You must release it manually.
+
+Example:
+
+free(ptr);
+
+Good practice:
+
+free(ptr);
+ptr = NULL;
+
+Setting the pointer to NULL avoids accidental use of freed memory.
+
+
+Memory Leak
+
+Definition:
+Memory that has been allocated but never released.
+
+Example:
+int *ptr = (int *)malloc(100 * sizeof(int));
+return 0;
+
+Since free(ptr); is missing, the allocated memory remains unused.
+
+*****Dangling Pointer
+
+Example:
+int *ptr = (int *)malloc(sizeof(int));
+free(ptr);
+printf("%d", *ptr);
+ptr still contains the old address, but that memory has already been released.
+This is called a dangling pointer.
+
+Correct approach:
+free(ptr);
+ptr = NULL;
+NULL Pointer
+int *ptr = NULL;
+
+The pointer intentionally points to no valid memory.
+
+Always check before using it:
+
+if (ptr != NULL)
+{
+    // Safe to use
+}
+
+******Wild Pointer
+int *ptr;
+The pointer is uninitialized and contains a random address.
+
+
+Important Interview Questions
+Q1. What is Dynamic Memory Allocation?
+
+Answer:
+
+Dynamic Memory Allocation is the process of allocating memory at runtime from the heap using functions such as malloc(), calloc(), and realloc(). The allocated memory must be released using free().
+
+Q2. Why do we use Dynamic Memory Allocation?
+
+Answer:
+
+Because the required memory size is often unknown at compile time. DMA allows programs to allocate only the amount of memory needed during execution.
+
+Q3. Which header file contains DMA functions?
+
+Answer:
+
+#include <stdlib.h>
+Q4. Where is dynamically allocated memory stored?
+
+Answer:
+
+In the Heap.
+
+Q5. What is the difference between Stack and Heap?
+Stack	Heap
+Automatic memory	Manual memory
+Local variables	Dynamic memory
+Fast	Slower
+Automatically freed	Must call free()
+Q6. Difference between malloc() and calloc()?
+malloc()	calloc()
+Does not initialize memory	Initializes memory to zero
+One argument	Two arguments
+Q7. What does realloc() do?
+
+Answer:
+
+It changes the size of an already allocated memory block while preserving existing data whenever possible.
+
+Q8. Why do we use free()?
+
+Answer:
+
+To release heap memory that is no longer needed and prevent memory leaks.
+
+Q9. What is a memory leak?
+
+Answer:
+
+A memory leak occurs when dynamically allocated memory is never freed, causing unnecessary memory consumption.
+
+Q10. What is a dangling pointer?
+
+Answer:
+
+A pointer that still points to memory after that memory has been freed.
+
+Q11. What is a wild pointer?
+
+Answer:
+
+A pointer that has not been initialized and contains a random memory address.
+
+Q12. Why do we check for NULL after malloc()?
+int *ptr = (int *)malloc(10 * sizeof(int));
+
+if (ptr == NULL)
+{
+    printf("Memory allocation failed\n");
+}
+
+Answer:
+
+If the system cannot allocate memory, malloc() returns NULL. Checking it prevents dereferencing an invalid pointer.
+
+30-Second Interview Answer
+
+Dynamic Memory Allocation (DMA) is the process of allocating memory during program execution instead of at compile time. It uses heap memory and is useful 
+when the required memory size is not known in advance. In C, DMA is performed using malloc(), calloc(), and realloc(), and the allocated memory must be 
+released using free() to avoid memory leaks. Compared to static allocation, DMA provides flexibility and efficient memory usage.
+Using it causes undefined behavior.
