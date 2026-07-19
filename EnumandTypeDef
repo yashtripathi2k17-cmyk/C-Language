@@ -4,21 +4,16 @@ This topic is small but frequently asked in C interviews, especially as a concep
 
 Part 1: Enumeration (enum)
 What is an Enumeration?
-
-An Enumeration (enum) is a user-defined data type used to create a group of named integer constants.
-
+An enum (enumeration) is a user-defined data type used to give meaningful names to a group of integer constants.
 Instead of remembering numbers like 0, 1, 2, we can use meaningful names.
 
 Why do we use enum?
-
 Imagine you're storing the days of a week.
 
 Without enum:
-
 int day = 2;
 
 Question:
-
 👉 What does 2 mean?
 
 Monday?
@@ -221,9 +216,7 @@ Usually the same as an int (commonly 4 bytes), but the exact size is implementat
 
 Part 2: typedef
 What is typedef?
-
 typedef is used to create another name (alias) for an existing data type.
-
 Think of it like a nickname.
 
 Example
