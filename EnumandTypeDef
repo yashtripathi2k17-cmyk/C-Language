@@ -1,0 +1,422 @@
+Module 9: Enumerations (enum) & typedef (Interview Guide)
+
+This topic is small but frequently asked in C interviews, especially as a conceptual question.
+
+Part 1: Enumeration (enum)
+What is an Enumeration?
+
+An Enumeration (enum) is a user-defined data type used to create a group of named integer constants.
+
+Instead of remembering numbers like 0, 1, 2, we can use meaningful names.
+
+Why do we use enum?
+
+Imagine you're storing the days of a week.
+
+Without enum:
+
+int day = 2;
+
+Question:
+
+👉 What does 2 mean?
+
+Monday?
+Tuesday?
+Wednesday?
+
+Not clear.
+
+Using enum:
+
+enum Day
+{
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY
+};
+
+enum Day day = TUESDAY;
+
+Now the code is much easier to understand.
+
+Syntax
+enum EnumName
+{
+    value1,
+    value2,
+    value3
+};
+
+Example
+
+enum Color
+{
+    RED,
+    GREEN,
+    BLUE
+};
+Default Values
+
+By default, enum values start from 0.
+
+enum Color
+{
+    RED,
+    GREEN,
+    BLUE
+};
+
+Internally,
+
+RED = 0
+
+GREEN = 1
+
+BLUE = 2
+Example
+#include<stdio.h>
+
+enum Color
+{
+    RED,
+    GREEN,
+    BLUE
+};
+
+int main()
+{
+    printf("%d", GREEN);
+}
+
+Output
+
+1
+Can We Assign Values?
+
+Yes.
+
+enum Month
+{
+    JAN = 1,
+    FEB,
+    MAR,
+    APR
+};
+
+Internally
+
+JAN = 1
+
+FEB = 2
+
+MAR = 3
+
+APR = 4
+
+Another Example
+
+enum Test
+{
+    A = 10,
+    B,
+    C
+};
+
+Values become
+
+A = 10
+
+B = 11
+
+C = 12
+Why Use enum?
+
+Suppose you're making a traffic light program.
+
+Without enum
+
+int signal = 1;
+
+Does 1 mean
+
+Stop?
+Ready?
+Go?
+
+Not clear.
+
+Using enum
+
+enum Signal
+{
+    RED,
+    YELLOW,
+    GREEN
+};
+
+enum Signal light = GREEN;
+
+Now anyone can understand the code.
+
+Real-Life Uses of enum
+Days of week
+Months
+Traffic lights
+Error codes
+Menu options
+Game states
+Advantages of enum
+
+✅ Improves readability
+
+✅ Makes code easier to understand
+
+✅ Avoids using random numbers ("magic numbers")
+
+Important Interview Questions (enum)
+Q1. What is enum?
+
+Answer:
+
+An enum is a user-defined data type used to define a set of named integer constants.
+
+Q2. Why do we use enum?
+
+Answer:
+
+To make the code more readable and avoid using numeric constants directly.
+
+Q3. What is the default value of the first enum member?
+
+Answer:
+
+0
+
+Q4. Can enum values be changed?
+
+Answer:
+
+Yes.
+
+Example
+
+enum Test
+{
+    A = 100,
+    B,
+    C
+};
+
+Values become
+
+100
+
+101
+
+102
+Q5. What is the size of enum?
+
+Usually the same as an int (commonly 4 bytes), but the exact size is implementation-defined by the compiler.
+
+Part 2: typedef
+What is typedef?
+
+typedef is used to create another name (alias) for an existing data type.
+
+Think of it like a nickname.
+
+Example
+
+Yash
+
+Nickname
+
+Yashu
+
+Both refer to the same person.
+
+Similarly,
+
+typedef int Integer;
+
+Now
+
+Integer x = 10;
+
+is exactly the same as
+
+int x = 10;
+Syntax
+typedef existing_datatype new_name;
+
+Example
+
+typedef int Number;
+
+Now
+
+Number a = 5;
+
+means
+
+int a = 5;
+Another Example
+
+Without typedef
+
+unsigned long int salary;
+
+With typedef
+
+typedef unsigned long int ULI;
+
+ULI salary;
+
+Much shorter.
+
+typedef with Structures
+
+Normally
+
+struct Student
+{
+    int id;
+};
+
+Variable
+
+struct Student s1;
+
+Notice we have to write
+
+struct Student
+
+every time.
+
+Using typedef
+
+typedef struct
+{
+    int id;
+} Student;
+
+Now simply
+
+Student s1;
+
+Much easier.
+
+typedef with Pointer
+
+Example
+
+typedef int *PTR;
+
+Now
+
+PTR p;
+
+means
+
+int *p;
+Why use typedef?
+
+Instead of writing long data types repeatedly
+
+unsigned long long int
+
+We can simply write
+
+ULL
+
+Makes code cleaner and easier to maintain.
+
+Advantages of typedef
+
+✅ Shorter code
+
+✅ Easy to read
+
+✅ Easy to maintain
+
+✅ Helpful with structures and pointers
+
+enum vs typedef
+enum	typedef
+Creates named constants	Creates a new name (alias) for a type
+Used for fixed values	Used to simplify type names
+
+Example
+
+enum Day
+{
+    MON,
+    TUE
+};
+
+creates constants.
+
+typedef int Number;
+
+creates an alias.
+
+Interview Questions (typedef)
+Q1. What is typedef?
+
+Answer:
+
+typedef creates a new name (alias) for an existing data type.
+
+Q2. Why do we use typedef?
+
+Answer:
+
+To make code shorter, more readable, and easier to maintain.
+
+Q3. Does typedef create a new data type?
+
+Answer:
+
+❌ No.
+
+It only creates another name for an existing type.
+
+Q4. Can typedef be used with structures?
+
+Answer:
+
+Yes.
+
+Example
+
+typedef struct
+{
+    int id;
+} Student;
+Q5. Difference between enum and typedef?
+
+Answer:
+
+enum creates a set of named integer constants.
+typedef creates an alias for an existing data type.
+Most Asked Interview Questions ⭐
+What is enum?
+Why do we use enum?
+What is the default value of the first enum constant?
+Can enum values be assigned manually?
+What is typedef?
+Why do we use typedef?
+Does typedef create a new data type?
+Difference between enum and typedef.
+How is typedef used with structures?
+Give a real-world example where enum is useful.
+🎯 30-Second Interview Answer
+
+What is enum?
+
+"enum is a user-defined data type that allows us to define a group of named integer constants. It improves code readability and avoids using hard-coded numeric values."
+
+What is typedef?
+
+"typedef creates an alias for an existing data type. It does not create a new type; it simply gives an existing type another name, making code shorter and easier to read."
