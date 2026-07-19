@@ -1,0 +1,380 @@
+Module 8: Structures & Unions
+
+This is an important interview topic because it tests your understanding of how C stores and organizes data.
+
+What is a Structure?
+
+A structure is a user-defined data type that allows us to store different types of data together under one name.
+
+Why do we need a Structure?
+
+Suppose you want to store student information.
+
+Without a structure:
+
+char name[20];
+int roll;
+float marks;
+
+For 100 students, you'll need separate arrays and it becomes difficult to manage.
+
+Using a structure:
+
+struct Student
+{
+    char name[20];
+    int roll;
+    float marks;
+};
+
+Now all information related to one student is grouped together.
+
+Creating a Structure Variable
+struct Student s1;
+
+Access members:
+
+s1.roll = 101;
+s1.marks = 89.5;
+
+. is called the member access operator.
+
+Structure in Memory
+struct Student
+{
+    int roll;
+    float marks;
+    char grade;
+};
+
+Memory:
+
++--------+---------+-------+
+| roll   | marks   | grade |
++--------+---------+-------+
+
+Each member gets its own memory.
+
+Array of Structures
+struct Student s[100];
+
+Stores data of 100 students.
+
+Pointer to Structure
+struct Student s1;
+
+struct Student *ptr = &s1;
+
+Access members using:
+
+ptr->roll = 101;
+
+Instead of
+
+(*ptr).roll = 101;
+
+-> is called the arrow operator.
+
+Structure Padding
+
+Suppose:
+
+struct Test
+{
+    char a;
+    int b;
+};
+
+Many students think:
+
+1 + 4 = 5 bytes
+
+But actually it is often 8 bytes.
+
+Why?
+
+The compiler adds padding for faster memory access.
+
+Memory:
+
+char
+padding padding padding
+int
+Why Padding?
+
+CPUs access aligned memory faster.
+
+Padding improves performance.
+
+sizeof(Structure)
+
+Example:
+
+struct Test
+{
+    char a;
+    int b;
+};
+
+printf("%lu", sizeof(struct Test));
+
+Output may be:
+
+8
+
+Not 5.
+
+What is a Union?
+
+A union is also a user-defined data type.
+
+Difference:
+
+All members share the same memory location.
+
+Example:
+
+union Data
+{
+    int a;
+    float b;
+    char c;
+};
+
+Memory:
+
++-----------+
+| Shared    |
+| Memory    |
++-----------+
+
+Only one member can store a meaningful value at a time.
+
+Example
+union Data d;
+
+d.a = 10;
+d.b = 5.5;
+
+Now d.a is overwritten.
+
+Only the latest value remains valid.
+
+Structure vs Union
+Structure	Union
+Separate memory for each member	Shared memory
+All members can store values together	Only one member is valid at a time
+Memory = sum of member sizes (plus padding)	Memory = size of the largest member
+When do we use Structures?
+Student records
+Employee details
+Bank accounts
+Product information
+When do we use Unions?
+Memory optimization
+Embedded systems
+Hardware programming
+Device drivers
+Important Interview Questions (Module 8)
+1. What is a structure?
+
+Answer: A user-defined data type that groups variables of different data types under one name.
+
+2. Why do we use structures?
+
+To store related data as a single unit.
+
+3. What is a union?
+
+A user-defined data type where all members share the same memory.
+
+4. Difference between Structure and Union?
+Structure	Union
+Separate memory	Shared memory
+All values exist together	One value at a time
+5. Why is a union smaller than a structure?
+
+Because all members share the same memory.
+
+6. What is structure padding?
+
+Extra bytes added by the compiler for proper memory alignment and faster access.
+
+7. What is the arrow (->) operator?
+
+Used to access structure members through a pointer.
+
+8. Difference between . and ->?
+. → Structure variable
+-> → Structure pointer
+Module 9: Storage Classes
+
+Storage classes define:
+
+Scope (Where can it be accessed?)
+Lifetime (How long does it exist?)
+Storage location
+
+There are four storage classes:
+
+auto
+static
+extern
+register
+1. auto
+
+Default storage class for local variables.
+
+Example:
+
+void fun()
+{
+    auto int x = 10;
+}
+
+or simply:
+
+int x = 10;
+
+Both are the same.
+
+Scope
+
+Inside the function only.
+
+Lifetime
+
+Until the function returns.
+
+2. static
+
+A static variable is initialized only once.
+
+It keeps its value between function calls.
+
+Example:
+
+#include <stdio.h>
+
+void fun()
+{
+    static int x = 0;
+    x++;
+    printf("%d\n", x);
+}
+
+int main()
+{
+    fun();
+    fun();
+    fun();
+}
+
+Output:
+
+1
+2
+3
+
+Normal local variable:
+
+1
+1
+1
+Why?
+
+Because a static variable is stored in the Data/BSS segment, not on the stack.
+
+3. extern
+
+Suppose:
+
+File1.c
+
+int count = 10;
+
+File2.c
+
+extern int count;
+
+extern tells the compiler:
+
+"This variable exists in another file."
+
+4. register
+
+Requests that the compiler store a variable in a CPU register for faster access.
+
+Example:
+
+register int i;
+
+Today, modern compilers decide automatically, so register is rarely used.
+
+Scope vs Lifetime
+Scope
+
+Where a variable can be accessed.
+
+Example:
+
+void fun()
+{
+    int x;
+}
+
+x is only accessible inside fun().
+
+Lifetime
+
+How long the variable exists.
+
+Local variable:
+
+Created when the function starts.
+
+Destroyed when the function ends.
+
+Static variable:
+
+Created once.
+
+Destroyed when the program ends.
+
+Local vs Global Variable
+Local	Global
+Inside function	Outside function
+Stack	Data/BSS
+Function scope	Entire file/program
+Important Interview Questions (Module 9)
+1. What is a storage class?
+
+Answer: A storage class defines a variable's scope, lifetime, and storage location.
+
+2. Name the storage classes.
+auto
+static
+extern
+register
+3. Difference between Scope and Lifetime?
+Scope	Lifetime
+Where the variable can be accessed	How long the variable exists
+4. Difference between Local and Global Variable?
+Local: Declared inside a function, stored on the stack.
+Global: Declared outside all functions, stored in the Data or BSS segment.
+5. Difference between auto and static?
+auto	static
+New variable each function call	One variable for the entire program
+Stored on stack	Stored in Data/BSS
+Value is lost after function returns	Value is preserved
+6. Why do we use static?
+
+To retain the value of a variable between function calls.
+
+7. What is extern?
+
+It allows a variable defined in one source file to be used in another source file.
+
+8. What is register?
+
+It suggests storing a variable in a CPU register for faster access, although modern compilers usually ignore the suggestion and optimize automatically.
