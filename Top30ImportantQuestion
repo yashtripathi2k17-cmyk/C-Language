@@ -1,0 +1,187 @@
+Top 35 C Interview Questions with Short Answers
+1. Why is C called a middle-level language?
+
+Answer:
+Because C supports both high-level features (functions, loops) and low-level features (pointers, direct memory access).
+
+2. Why did you choose C as your first programming language?
+
+Answer:
+Because C teaches programming fundamentals like variables, loops, functions, pointers, and memory management.
+
+3. Why is C still used today?
+
+Answer:
+Because it is fast, efficient, and provides direct hardware access.
+
+4. Where is C used?
+
+Answer:
+
+Operating Systems
+Embedded Systems
+Device Drivers
+Compilers
+Databases
+IoT Devices
+5. Why is C faster than other languages?
+
+Answer:
+Because C is compiled into machine code and has very little runtime overhead.
+
+6. Compiler vs Interpreter
+Compiler	Interpreter
+Converts whole program	Converts line by line
+Faster	Slower
+Creates executable	No executable
+7. What is a Compiler?
+
+Answer:
+A compiler converts the entire C program into machine code before execution.
+
+8. What is a Linker?
+
+Answer:
+The linker combines your object code with library code (like printf()) to create an executable file.
+
+9. What is a Loader?
+
+Answer:
+The loader loads the executable file into RAM and starts program execution.
+
+10. What is Memory Layout?
+
+Answer:
+The memory organization of a C program into Text, Data, BSS, Heap, and Stack segments.
+
+11. Difference between Stack and Heap
+Stack	Heap
+Local variables	Dynamic memory
+Automatic	Manual (malloc/free)
+Fast	Slower
+12. What is Dynamic Memory Allocation?
+
+Answer:
+Allocating memory during runtime using malloc(), calloc(), or realloc().
+
+13. malloc() vs calloc()
+malloc()	calloc()
+Garbage values	Zero initialized
+One argument	Two arguments
+14. malloc() vs realloc()
+
+Answer:
+
+malloc() allocates new memory.
+realloc() changes the size of already allocated memory.
+15. Why is free() necessary?
+
+Answer:
+To release heap memory and prevent memory leaks.
+
+16. What is a Memory Leak?
+
+Answer:
+Allocated memory that is never released using free().
+
+17. Pointer vs Address
+
+Answer:
+
+Address → Memory location.
+Pointer → Variable that stores an address.
+18. Why do we use Pointers?
+
+Answer:
+For dynamic memory allocation, pass-by-reference, arrays, linked lists, trees, and direct memory access.
+
+19. NULL vs Wild vs Dangling Pointer
+Pointer	Meaning
+NULL	Points to nothing
+Wild	Uninitialized pointer
+Dangling	Points to freed memory
+20. Array vs Pointer
+Array	Pointer
+Fixed size	Can point anywhere
+Cannot be reassigned	Can be reassigned
+21. Why does array indexing start from 0?
+
+Answer:
+Because the first element is stored at the base address, making address calculation simple:
+
+Address = Base + (Index × Size)
+
+22. Call by Value vs Call by Reference
+Value	Reference
+Copy is passed	Address is passed
+Original value unchanged	Original value changes
+23. Recursion vs Loop
+Recursion	Loop
+Function calls itself	Repeats using loops
+Uses stack	Doesn't create extra stack frames
+24. Structure vs Union
+Structure	Union
+Separate memory	Shared memory
+All members valid	One member at a time
+25. What is Structure Padding?
+
+Answer:
+Extra bytes added by the compiler to align data for faster memory access.
+
+26. What is enum?
+
+Answer:
+A user-defined data type that assigns meaningful names to integer constants.
+
+27. What is typedef?
+
+Answer:
+Creates an alias (new name) for an existing data type.
+
+28. Scope vs Lifetime
+Scope	Lifetime
+Where variable is accessible	How long it exists
+29. Static vs Global Variable
+Static	Global
+Can have local scope	Global scope
+Lifetime = Entire Program	Lifetime = Entire Program
+30. sizeof() vs strlen()
+sizeof()	strlen()
+Counts total bytes	Counts characters
+Includes '\0' (for character arrays initialized with string literals)	Doesn't include '\0'
+31. strcmp() vs ==
+strcmp()	==
+Compares string contents	Compares addresses
+32. Macro vs Function
+Macro	Function
+Expanded before compilation	Executed at runtime
+Faster	Type checking
+33. Text vs Data vs BSS Segment
+Segment	Stores
+Text	Program code
+Data	Initialized global/static variables
+BSS	Uninitialized global/static variables
+34. What is a Segmentation Fault?
+
+Answer:
+A runtime error that occurs when a program accesses invalid memory (e.g., dereferencing a NULL or invalid pointer).
+
+35. Why is gets() unsafe and fgets() safe?
+
+Answer:
+
+gets() has no size limit and can cause buffer overflow.
+fgets() takes the buffer size, preventing overflow.
+⭐ Top 10 Questions (Highest Probability)
+Why is C called a middle-level language?
+Stack vs Heap.
+malloc() vs calloc().
+Memory Layout in C.
+Pointer vs Address.
+NULL vs Wild vs Dangling Pointer.
+sizeof() vs strlen().
+strcmp() vs ==.
+Structure vs Union.
+Macro vs Function.
+
+These 35 questions form a strong interview cheat sheet for C and are among the most frequently asked conceptual questions in campus placements and technical interviews.
