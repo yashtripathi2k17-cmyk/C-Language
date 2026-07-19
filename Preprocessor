@@ -1,0 +1,457 @@
+Preprocessor (Complete Beginner Explanation)
+
+This is a small but important interview topic. Interviewers often ask:
+
+What is a preprocessor?
+What is #include?
+What is #define?
+Macro vs Function
+What are Header Files?
+What are Include Guards?
+What is a Preprocessor?
+
+Before your C program is compiled, there is a small program called the Preprocessor.
+
+Its job is to process all lines starting with #.
+
+Example:
+
+#include<stdio.h>
+
+#define PI 3.14
+
+These lines are not handled by the compiler.
+
+They are handled by the Preprocessor.
+
+Program Execution Flow
+You Write Code (.c)
+        │
+        ▼
+   Preprocessor
+        │
+        ▼
+     Compiler
+        │
+        ▼
+    Assembler
+        │
+        ▼
+      Linker
+        │
+        ▼
+    Executable
+
+So,
+
+Preprocessor works before the compiler.
+
+What does the Preprocessor do?
+
+Main jobs:
+
+Processes #include
+Processes #define
+Processes conditional compilation (#ifdef, #ifndef, etc.)
+Expands macros
+1. #include
+
+Suppose you write
+
+#include<stdio.h>
+Question
+
+Did you write printf()?
+
+No.
+
+It is already written inside stdio.h.
+
+The preprocessor copies the required declarations from the header file into your source code.
+
+Think of it as:
+
+Before
+
+#include<stdio.h>
+
+int main()
+{
+    printf("Hello");
+}
+
+After preprocessing (conceptually)
+
+// Contents from stdio.h are inserted here
+
+int main()
+{
+    printf("Hello");
+}
+Why do we use #include?
+
+Because it allows us to use library functions like
+
+printf()
+scanf()
+fopen()
+fclose()
+Types of Header Files
+1. System Header File
+#include<stdio.h>
+
+Uses < >
+
+Provided by the C Standard Library.
+
+Examples
+
+stdio.h
+
+stdlib.h
+
+string.h
+
+math.h
+2. User Header File
+
+Suppose you create
+
+student.h
+
+Then
+
+#include "student.h"
+
+Uses " ".
+
+Interview Question
+Difference between
+#include<stdio.h>
+
+and
+
+#include "stdio.h"
+
+Answer
+
+< >
+
+Searches system directories.
+
+" "
+
+Searches the current folder first, then system directories.
+2. Header Files
+
+A header file contains
+
+Function declarations
+Macros
+Constants
+Data type definitions
+
+Example
+
+stdio.h
+
+Contains declarations for
+
+printf()
+
+scanf()
+
+fprintf()
+
+fscanf()
+
+Another example
+
+math.h
+
+Contains
+
+sqrt()
+
+pow()
+
+sin()
+
+cos()
+Why use Header Files?
+
+Imagine writing
+
+printf()
+
+Without including
+
+#include<stdio.h>
+
+The compiler doesn't know what printf() is.
+
+So,
+
+Header files tell the compiler
+
+"These functions exist."
+
+3. #define
+
+#define creates a macro.
+
+Example
+
+#define PI 3.14
+
+Later,
+
+area = PI * r * r;
+
+The preprocessor changes it into
+
+area = 3.14 * r * r;
+
+Notice
+
+No variable is created.
+
+It simply replaces the text.
+
+Another Example
+#define MAX 100
+
+Program
+
+int arr[MAX];
+
+After preprocessing
+
+int arr[100];
+Why use #define?
+
+Instead of writing
+
+3.14159
+
+many times,
+
+Write
+
+PI
+
+If the value changes,
+
+Change it only once.
+
+4. Macros
+
+A macro is a piece of code replaced before compilation.
+
+Example
+
+#define SQUARE(x) x*x
+
+Use
+
+SQUARE(5)
+
+Preprocessor replaces it with
+
+5*5
+
+Output
+
+25
+Another Example
+#define ADD(a,b) a+b
+
+Use
+
+ADD(5,3)
+
+Becomes
+
+5+3
+
+Output
+
+8
+Macro Expansion
+#define NAME "Yash"
+
+printf(NAME);
+
+After preprocessing
+
+printf("Yash");
+Macro vs Function ⭐⭐⭐⭐⭐
+
+Example
+
+Macro
+
+#define SQUARE(x) x*x
+
+Function
+
+int square(int x)
+{
+    return x*x;
+}
+Difference
+Macro	Function
+Replaced before compilation	Executed at runtime
+No function call	Function call occurs
+Faster	Slightly slower
+No type checking	Type checking happens
+Can increase code size	Better code reuse
+Which is faster?
+
+Macro
+
+Because there is no function call.
+
+Which is safer?
+
+Function
+
+Because it performs type checking.
+
+Macro Problem
+
+Example
+
+#define SQUARE(x) x*x
+
+Use
+
+SQUARE(2+3)
+
+Becomes
+
+2+3*2+3
+
+Output
+
+11
+
+Expected
+
+25
+
+Correct Macro
+
+#define SQUARE(x) ((x)*(x))
+5. Conditional Compilation
+
+Sometimes we want to compile only certain parts of the program.
+
+Example
+
+#ifdef DEBUG
+
+printf("Debug Mode");
+
+#endif
+
+If
+
+DEBUG
+
+is defined,
+
+This code is compiled.
+
+Otherwise,
+
+It is ignored.
+
+Common Directives
+#ifdef
+
+If defined
+
+#ifndef
+
+If not defined
+
+#if
+
+Checks a condition
+
+#else
+
+Otherwise
+
+#endif
+
+Ends the condition
+
+Example
+#define TEST
+
+#ifdef TEST
+printf("Testing");
+#endif
+
+Output
+
+Testing
+Why Conditional Compilation?
+
+Used for
+
+Debugging
+Different operating systems
+Important Interview Questions
+Q1. What is a preprocessor?
+
+Answer
+
+A preprocessor is a program that processes directives like #include and #define before the compiler starts compiling the code.
+
+Q2. Why do we use #include?
+
+To include declarations from header files so we can use library functions.
+
+Q3. What is a header file?
+
+A file containing function declarations, macros, constants, and type definitions.
+
+Q4. Difference between <stdio.h> and "student.h"?
+< >	" "
+System header	User-defined header
+Searches system folders	Searches current folder first
+Q5. What is #define?
+
+A preprocessor directive used to create symbolic constants or macros.
+
+Q6. What is a macro?
+
+A macro is code that the preprocessor replaces before compilation.
+
+Q7. Macro vs Function?
+Macro	Function
+Faster	Slightly slower
+No type checking	Type checking
+Expanded before compilation	Executed at runtime
+Q8. What is Conditional Compilation?
+
+Compiling selected parts of code using directives like #ifdef, #ifndef, and #if.
+
+Q9. Why do we use Include Guards?
+
+To prevent the same header file from being included multiple times.
+
+Q10. What is the purpose of #ifndef?
+
+It checks whether a macro is not defined. It is mainly used in include guards.
+
+⭐ 30-Second Interview Answer
+
+The preprocessor is a program that runs before the compiler. It processes directives such as #include, #define, and conditional
+compilation. #include inserts declarations from header files, #define creates symbolic constants and macros, and include guards (#ifndef, #define, #endif) 
+prevent a
+header file from being included multiple times, avoiding redefinition errors.
+Different versions of software
