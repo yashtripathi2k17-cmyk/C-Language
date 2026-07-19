@@ -1,0 +1,189 @@
+HR + Conceptual Questions
+1. Why did you choose C as your first programming language?
+Answer:
+C teaches programming fundamentals like variables, loops, functions, pointers, and memory management, making it a strong foundation for learning other languages.
+
+2. Why is C still used today?
+Answer:
+C is fast, efficient, and provides direct access to hardware, making it ideal for system programming and embedded systems.
+
+3. Where is C used in the industry?
+
+Answer:
+Operating Systems
+Embedded Systems
+Device Drivers
+Compilers
+Databases
+IoT Devices
+Networking Software
+
+4. Why is C faster than many other languages?
+Answer:
+C is compiled directly into machine code, has minimal runtime overhead, and provides direct memory access.
+
+5. What are the limitations of C?
+Answer:
+No Object-Oriented Programming
+No Garbage Collection
+No Exception Handling
+Manual Memory Management
+Less secure due to pointers
+
+6. Difference between C and C++
+C	C++
+Procedural	Object-Oriented + Procedural
+No Classes	Supports Classes
+No Inheritance	Supports Inheritance
+Uses malloc()	Uses new
+
+
+7. Difference between C and Java
+C	Java
+Procedural	Object-Oriented
+Compiled to Machine Code	Runs on JVM
+Platform Dependent	Platform Independent
+Manual Memory	Garbage Collection
+
+
+Top Interview Questions
+1. Why is C called a middle-level language?
+Answer:
+Because it supports both high-level features (loops, functions) and low-level features (pointers, memory access).
+
+2. Compiler vs Interpreter
+Compiler	Interpreter
+Converts whole program	Converts line by line
+Faster	Slower
+Creates executable	No executable
+
+
+3. Call by Value vs Call by Reference
+Call by Value	Call by Reference
+Copy of value is passed	Address is passed
+Original value doesn't change	Original value can change
+
+
+4. Array vs Pointer
+Array	Pointer
+Fixed size	Can point anywhere
+Cannot be reassigned	Can be reassigned
+Stores elements	Stores addresses
+
+
+5. Pointer vs Address
+Answer:
+Address → Memory location (e.g., 1000)
+Pointer → Variable that stores an address.
+
+
+6. NULL vs Wild vs Dangling Pointer
+Pointer	Meaning
+NULL	Points to nothing
+Wild	Uninitialized pointer
+Dangling	Points to freed memory
+
+
+7. Stack vs Heap
+Stack	Heap
+Local variables	Dynamic memory
+Automatic	Manual (malloc/free)
+Fast	Slower
+
+8. malloc() vs calloc()
+malloc()	calloc()
+Garbage values	Zero initialized
+One argument	Two arguments
+
+
+9. malloc() vs realloc()
+malloc()	realloc()
+New allocation	Resizes existing allocation
+
+10. Why is free() necessary?
+Answer:
+To release dynamically allocated memory and prevent memory leaks.
+
+11. What is a Memory Leak?
+Answer:
+Memory allocated using malloc() but never released using free().
+
+12. Structure vs Union
+Structure	Union
+Separate memory	Shared memory
+All members usable	One member at a time
+
+13. Static vs Global Variable
+Static	Global
+Can have local scope	Global scope
+Lifetime = Entire Program	Lifetime = Entire Program
+
+14. Scope vs Lifetime
+Scope	Lifetime
+Where variable is accessible	How long variable exists
+
+15. sizeof() vs strlen()
+sizeof()	strlen()
+Total memory in bytes	Number of characters
+Includes '\0' for character arrays	Doesn't include '\0'
+
+
+16. strcmp() vs ==
+strcmp()	==
+Compares string contents	Compares addresses
+
+
+17. break vs continue
+break	continue
+Exits loop	Skips current iteration
+
+
+18. while vs do-while
+while	do-while
+Checks condition first	Executes once before checking
+May execute zero times	Executes at least once
+
+
+19. Recursion vs Loop
+Recursion	Loop
+Function calls itself	Repeats using loops
+Uses stack	Doesn't create new stack frames
+
+
+20. Local vs Global Variable
+Local	Global
+Inside function	Outside function
+Stack	Data/BSS Segment
+
+
+21. Macro vs Function
+Macro	Function
+Expanded before compilation	Executed at runtime
+Faster	Safer (type checking)
+
+
+22. Text vs Data vs BSS Segment
+Segment	Stores
+Text	Program code
+Data	Initialized global/static variables
+BSS	Uninitialized global/static variables
+
+
+23. What is a Segmentation Fault?
+Answer:
+A segmentation fault occurs when a program tries to access memory that it is not allowed to access, such as dereferencing a NULL or dangling pointer.
+
+24. Why does array indexing start from 0?
+Answer:
+Array indexing starts from 0 because the first element is stored at the base address, and its address is calculated as:
+
+Address = Base Address + (Index × Size of Element)
+For index 0:
+Base + (0 × Size) = Base Address
+
+This makes address calculation simple and efficient.
+
+25. Why do we use pointers?
+
+Answer:
+Pointers are used to store memory addresses. They enable dynamic memory allocation, efficient array and string handling, pass-by-reference, linked lists, trees, and direct memory access.
