@@ -32,8 +32,129 @@ marks
 salary
 studentName
 
-Rules:
+------------Rules:
 
 Start with a letter or _
 Cannot start with a number
 No spaces
+Super Important Facts for Online MCQs
+char = 1 Byte
+int = Typically 4 Bytes
+float = Typically 4 Bytes
+double = Typically 8 Bytes
+1 Byte = 8 Bits
+sizeof() returns bytes, not bits.
+strlen() doesn't count '\0'.
+sizeof(char[]) includes '\0' when initialized with a string literal.
+'A' = 65
+'a' = 97
+'0' = 48
+0 = False
+Any non-zero value = True
+% returns the remainder.
+= assigns; == compares.
+++a → Increment first.
+a++ → Use first, then increment.
+gets() is unsafe; fgets() is safe.
+printf() uses format specifiers like %d, %f, %c, %s.
+scanf() generally requires & (except for character arrays used as strings).
+
+
+
+-------25 Super Important MCQ Facts
+sizeof(char)=1
+char stores ASCII values.
+strlen() doesn't count '\0'.
+sizeof() includes '\0' for string arrays.
+0=False
+Non-zero=True
+malloc() → Garbage
+calloc() → Zero
+realloc() → Resize
+free() → Release memory
+Stack → Local variables
+Heap → Dynamic memory
+Data → Initialized globals
+BSS → Uninitialized globals
+== compares values
+= assigns values
+strcmp() returns 0 if equal
+printf() returns the number of characters printed
+switch cannot use float
+enum starts from 0
+typedef creates an alias
+Structure → Separate memory
+Union → Shared memory
+gets() is unsafe
+C is case-sensitive
+
+
+--------sizeof(pointer) in C (Simple Explanation)
+
+One of the most asked MCQ topics in C interviews.
+
+What does sizeof(pointer) return?
+
+sizeof(pointer) returns the size of the pointer variable itself, NOT the size of the data it points to.
+
+Example 1
+#include <stdio.h>
+
+int main()
+{
+    int a = 10;
+    int *ptr = &a;
+
+    printf("%zu", sizeof(ptr));
+}
+Output (Most 64-bit systems)
+8
+
+Why?
+
+Because ptr stores an address, and on a 64-bit system, an address is 8 bytes.
+
+Example 2
+char ch = 'A';
+char *ptr = &ch;
+
+printf("%zu", sizeof(ptr));
+
+Output (64-bit):
+
+8
+
+Even though char is only 1 byte, the pointer still occupies 8 bytes.
+
+Example 3
+double d = 10.5;
+double *ptr = &d;
+
+printf("%zu", sizeof(ptr));
+
+Output (64-bit):
+
+8
+
+Again, the pointer size is unchanged.
+
+Why?
+
+A pointer stores only a memory address.
+
+An address has a fixed size on a given system.
+
+It doesn't matter whether the pointer points to:
+
+char
+int
+float
+double
+struct
+
+The pointer size remains the same on that architecture.
+
+32-bit vs 64-bit Systems
+System	Pointer Size
+32-bit	4 Bytes
+64-bit	8 Bytes
