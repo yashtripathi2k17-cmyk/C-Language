@@ -185,3 +185,153 @@ Structure vs Union.
 Macro vs Function.
 
 These 35 questions form a strong interview cheat sheet for C and are among the most frequently asked conceptual questions in campus placements and technical interviews.
+
+
+-----Interview Questions
+Q1. What is a dangling pointer?
+
+Answer:
+
+A dangling pointer is a pointer that points to memory that has already been freed or is no longer valid.
+
+Q2. How can you avoid a dangling pointer?
+
+Answer:
+
+After calling free(), assign the pointer to NULL.
+
+free(ptr);
+ptr = NULL;
+⭐ One-Line Revision
+
+Dangling Pointer = Pointer to freed (invalid) memory.
+
+C Example
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int *ptr = (int *)malloc(sizeof(int));
+
+    *ptr = 10;
+
+    free(ptr);
+
+    // ptr is now a dangling pointer
+
+    return 0;
+}
+Memory Before free()
+Heap Memory
+
+Address    Value
+
+1000       10
+
+ptr
+ │
+ ▼
+1000
+
+The pointer is valid.
+
+After free(ptr)
+Heap Memory
+
+Address    Value
+
+1000       Memory Released
+
+ptr
+ │
+ ▼
+1000   ❌
+
+The memory has been released, but ptr still stores the old address.
+
+Now ptr is a dangling pointer.
+
+
+What is a Memory Leak? (Simple Explanation)
+
+A memory leak happens when:
+
+You allocate memory using malloc(), calloc(), or realloc(), but you never release it using free().
+
+As a result, that memory remains occupied and cannot be used again, even though your program no longer needs it.
+
+
+Where Does It Happen?
+
+Memory leaks happen in the Heap, because heap memory must be managed manually.
+
+The Stack does not have memory leaks because local variables are automatically removed when a function returns.
+
+
+Stack vs Heap
+Stack	Heap
+Memory is freed automatically	Programmer must call free()
+No memory leaks	Memory leaks are possible
+
+Memory Leak vs Dangling Pointer
+
+Many students confuse these.
+
+Memory Leak
+int *ptr = malloc(sizeof(int));
+
+// Forgot free()
+Memory is allocated.
+Memory is never released.
+Memory leak.
+Dangling Pointer
+int *ptr = malloc(sizeof(int));
+
+free(ptr);
+Memory is released.
+ptr still contains the old address.
+Dangling pointer.
+Memory Leak vs Dangling Pointer (Easy Comparison)
+Memory Leak	Dangling Pointer
+Memory is not freed	Memory is freed
+Wastes memory	Pointer refers to invalid memory
+Caused by forgetting free()	Caused by using a pointer after free()
+How to Prevent Memory Leaks?
+
+Always follow this rule:
+
+malloc()
+      ↓
+Use Memory
+      ↓
+free()
+      ↓
+ptr = NULL
+Interview Questions
+Q1. What is a memory leak?
+
+Answer:
+
+A memory leak occurs when dynamically allocated memory is not released using free(), causing memory to remain occupied even though it is no longer needed.
+
+Q2. Why is a memory leak dangerous?
+
+Answer:
+
+It wastes memory, reduces available RAM, slows the program, and may eventually cause the program to crash.
+
+Q3. In which memory area do memory leaks occur?
+
+Answer:
+
+In the Heap, because heap memory must be released manually using free().
+
+Q4. How can you avoid memory leaks?
+
+Answer:
+
+Always call free() after using dynamically allocated memory, and set the pointer to NULL.
+
+free(ptr);
+ptr = NULL;
