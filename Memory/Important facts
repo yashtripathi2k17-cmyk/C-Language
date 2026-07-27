@@ -1,0 +1,39 @@
+1---Byte is basic unit of memory
+2----Bit is a smalllest unit of data
+3---8bits==1bytes
+    1024bytes=1kb
+    1024kb=1mb
+    1024mb=1gb
+     1024gb=1tb
+4    Keywords
+
+Keywords are reserved words in C.
+
+Examples:
+
+int
+float
+return
+if
+while
+for
+break
+continue
+
+There are 32 keywords in ANSI C.
+
+8. Identifiers
+
+Identifiers are names given by the programmer.
+
+Examples:
+
+marks
+salary
+studentName
+
+Rules:
+
+Start with a letter or _
+Cannot start with a number
+No spaces
